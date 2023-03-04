@@ -42,12 +42,9 @@ public class MovieService {
         return movie;
     }
 
-//    public static void main(String[] args){
-//        MovieService movieService = new MovieService();
-//        List<String> movies = movieService.getMoviesInSystem("/Users/abhi/documents");
-//        System.out.println(movies);
-//
-//    }
+
+
+
 
 }
 

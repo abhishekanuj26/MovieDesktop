@@ -20,8 +20,14 @@ public class MovieController {
     MovieService movieService;
 
     @GetMapping("/getSystemMovies")
-    public ResponseEntity<List<Movie>> getSystemMovies(@RequestParam String folder){
-        return new ResponseEntity<>(movieService.getMoviesInSystem(folder), HttpStatus.OK);
+    public ResponseEntity<List<Movie>> getSystemMovies(@RequestParam String name){
+        return new ResponseEntity<>(movieService.getMoviesInSystem(name), HttpStatus.OK);
     }
+    @GetMapping("searchMovies")
+    public ResponseEntity<Movie> getMovie(@RequestParam String name){
+        return new ResponseEntity<>(movieService.getMoviesFromImdb(name),HttpStatus.OK);
+    }
+
+
 
 }
