@@ -1,6 +1,7 @@
 package com.movie.moviesystem.service;
 
 import com.movie.moviesystem.models.Movie;
+import com.movie.moviesystem.repository.Movies;
 import com.movie.moviesystem.repository.MoviesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,10 +43,24 @@ public class MovieService {
     public Movie getMoviesFromImdb(String name) {
         RestTemplate restTemplate = new RestTemplate();
         Movie movie = restTemplate.getForObject("http://www.omdbapi.com/?" + "t=" + name + "&apikey=1ca2464a", Movie.class);
+
         System.out.println(movie);
+
         assert movie != null;
-        moviesRepository.save(movie);
+        createMoviesRepo(movie);
+
         return movie;
+    }
+
+    private void createMoviesRepo(Movie movie) {
+        Movies movies = new Movies();
+        movies.setMovieId(movie.getImdbId());
+        movies.setMovieName(movie.getTitle());
+        try{
+            moviesRepository.save(movies);
+        } catch (Exception e) {
+            System.out.println("data already exist");
+        }
     }
 }
 

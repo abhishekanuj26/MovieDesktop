@@ -1,40 +1,30 @@
 package com.movie.moviesystem.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
-
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import java.io.Serializable;
 
-@Entity
-@Table(name="movies")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Data
 public class Movie implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
     @JsonProperty("Title")
-    @Column(name="movieName")
-    String title;
+    private String title;
     @JsonProperty("Released")
-    String released;
+    private String released;
     @JsonProperty("Plot")
-    String plot;
+    private String plot;
     @JsonProperty("Poster")
-    String poster;
+    private String poster;
     @JsonProperty("imdbRating")
-    String imdbRating;
+    private String imdbRating;
     @JsonProperty("imdbID")
-    @Column(name = "movieId")
-    String imdbId;
+    private String imdbId;
     @JsonProperty("Type")
-    String type;
+    private String type;
 
-    @Column(name="watched")
-    private Boolean isWatched = false;
 }
